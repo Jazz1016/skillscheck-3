@@ -14,3 +14,4 @@ INSERT INTO users (
     $2,
     $3
 )
+RETURNING user_id, username;
