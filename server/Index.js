@@ -41,3 +41,4 @@ app.get(`/api/posts/:id`, Ctrl.allUserPosts);
 app.get(`/api/posts`, Ctrl.allPosts);
 app.post(`/api/posts/:id`, Ctrl.newPost);
 app.get(`/api/post/:id`, Ctrl.onePost);
+app.get(`/api/posts`, Ctrl.searchPosts);

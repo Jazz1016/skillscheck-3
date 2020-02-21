@@ -41,5 +41,27 @@ module.exports = {
         res.status(200).send(posts);
       })
       .catch(() => console.log("error sending all posts"));
+  },
+  searchPosts: async (req, res) => {
+    console.log(req.query);
+    const passIn = `%${req.query.title}%`;
+
+    const db = req.app.get("db");
+    await db
+      .searchPosts(passIn)
+      .then(posts => {
+        res.status(200).send(posts);
+      })
+      .catch(() => console.log("filtered results sent"));
+    // searchWallets: (req, res) => {
+    //   console.log(req.query);
+    //   const { coin } = req.query;
+    //   if (coin) {
+    //     if (coin !== "") {
+    //       let items = user.wallets.filter(el => el.coin.includes(req.query.coin));
+    //       return res.status(200).send(items);
+    //     } else return res.status(200).send(user.wallets);
+    //   } else res.status(200).send(user.wallets);
+    // }
   }
 };

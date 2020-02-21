@@ -61,7 +61,7 @@ class Dashboard extends React.Component {
           }}
         />
         <button>search</button>
-        <input type="checkbox" name="own posts" value="check"></input>
+        <input type="checkbox" name="" value="check"></input>
         {postList}
       </div>
     );
