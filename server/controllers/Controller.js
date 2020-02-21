@@ -1,5 +1,5 @@
 module.exports = {
-  allPosts: async (req, res) => {
+  allUserPosts: async (req, res) => {
     const { id } = req.params;
     const db = req.app.get("db");
     await db
@@ -28,7 +28,7 @@ module.exports = {
     let post = await db.get_post(id);
     post = post[0];
     if (post) {
-      res.status(302).send(post);
+      res.status(202).send(post);
     } else {
       res.sendStatus(404);
     }

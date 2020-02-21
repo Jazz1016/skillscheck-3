@@ -18,3 +18,5 @@ class Form extends React.Component {
     return <div>Form.js</div>;
   }
 }
+
+export default Form;
