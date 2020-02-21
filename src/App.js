@@ -9,11 +9,12 @@ function App(props) {
   return (
     <div className="App">
       {props.location.pathname === "/" ? (
-        <>{routes}</>
+        <div className="routes">{routes}</div>
       ) : (
         <>
           <Nav />
-          {routes}
+          {/* FLEXBOX REQUIREMENT BELOW */}
+          <div className="routes">{routes}</div>
         </>
       )}
     </div>

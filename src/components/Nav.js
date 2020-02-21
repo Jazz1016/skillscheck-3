@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./Nav-Auth.css";
 
 function Nav() {
   return (
-    <div>
+    <div className="flexbox-requirement">
       Nav.js
       <Link to="/dash">
         <section>Home</section>

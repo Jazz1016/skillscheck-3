@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { getUser } from "../redux/Reducer";
 import { Link } from "react-router-dom";
+import "./Dash-Post.css";
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -10,16 +11,17 @@ class Dashboard extends React.Component {
     this.state = {
       posts: [],
       search: "",
-      userposts: true
+      userposts: false
     };
   }
 
   componentDidMount() {
-    this.getUserPosts(this.props.state.user.user_id);
+    this.getAllPosts();
   }
-
-  clearSearch = () => {
-    this.setState({ search: "" });
+  getAllPosts = () => {
+    axios.get(`/api/posts`).then(res => {
+      this.setState({ posts: res.data });
+    });
   };
 
   getUserPosts = userid => {
@@ -31,13 +33,22 @@ class Dashboard extends React.Component {
   handleChange = e => {
     this.setState({ search: e.target.value });
   };
-
+  clearSearch = () => {
+    this.setState({ search: "" });
+  };
+  matchUser = () => {};
   render() {
     console.log(this.props);
     const postList = this.state.posts.map((post, i) => {
       return (
         <Link to={`post/${post.post_id}`}>
-          <div>{post.title}</div>
+          <div>
+            <section>{post.title}</section>
+            <img
+              className="img"
+              src={`https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/egg-3442-e1f6463624338504cd021bf23aef8441@1x.jpg`}
+            />
+          </div>
         </Link>
       );
     });
@@ -49,6 +60,8 @@ class Dashboard extends React.Component {
             this.handleChange(e);
           }}
         />
+        <button>search</button>
+        <input type="checkbox" name="own posts" value="check"></input>
         {postList}
       </div>
     );

@@ -28,9 +28,18 @@ module.exports = {
     let post = await db.get_post(id);
     post = post[0];
     if (post) {
-      res.status(202).send(post);
+      res.status(200).send(post);
     } else {
       res.sendStatus(404);
     }
+  },
+  allPosts: async (req, res) => {
+    const db = req.app.get("db");
+    await db
+      .get_all_posts()
+      .then(posts => {
+        res.status(200).send(posts);
+      })
+      .catch(() => console.log("error sending all posts"));
   }
 };

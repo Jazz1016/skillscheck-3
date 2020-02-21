@@ -38,5 +38,6 @@ app.post(`/api/auth/login`, authCtrl.login);
 
 //POST ENDPOINTS
 app.get(`/api/posts/:id`, Ctrl.allUserPosts);
+app.get(`/api/posts`, Ctrl.allPosts);
 app.post(`/api/posts/:id`, Ctrl.newPost);
 app.get(`/api/post/:id`, Ctrl.onePost);
