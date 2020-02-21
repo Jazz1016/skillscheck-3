@@ -35,10 +35,12 @@ massive({
 //AUTH ENDPOINTS
 app.post(`/api/auth/register`, authCtrl.register);
 app.post(`/api/auth/login`, authCtrl.login);
+app.post(`/api/auth/logout`, authCtrl.logout);
 
 //POST ENDPOINTS
 app.get(`/api/posts/:id`, Ctrl.allUserPosts);
 app.get(`/api/posts`, Ctrl.allPosts);
+app.get(`/api/post`, Ctrl.searchPosts);
+
 app.post(`/api/posts/:id`, Ctrl.newPost);
 app.get(`/api/post/:id`, Ctrl.onePost);
-app.get(`/api/posts`, Ctrl.searchPosts);

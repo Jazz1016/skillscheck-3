@@ -36,9 +36,15 @@ class Dashboard extends React.Component {
   clearSearch = () => {
     this.setState({ search: "" });
   };
-  matchUser = () => {};
+  searchPosts = text => {
+    console.log(text);
+    axios.get(`/api/post?title=${text}`).then(res => {
+      this.setState({ posts: res.data });
+    });
+  };
   render() {
-    console.log(this.props);
+    // console.log(this.props);
+    // console.log(this.state.posts);
     const postList = this.state.posts.map((post, i) => {
       return (
         <Link to={`post/${post.post_id}`}>
@@ -60,7 +66,13 @@ class Dashboard extends React.Component {
             this.handleChange(e);
           }}
         />
-        <button>search</button>
+        <button
+          onClick={() => {
+            this.searchPosts(this.state.search);
+          }}
+        >
+          search
+        </button>
         <input type="checkbox" name="" value="check"></input>
         {postList}
       </div>

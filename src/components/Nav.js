@@ -1,8 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Nav-Auth.css";
+import { connect } from "react-redux";
+import { logout } from "../redux/Reducer";
+import axios from "axios";
 
-function Nav() {
+function Nav(props) {
+  const logout = () => {
+    axios.post("/api/logout").then(() => {
+      props.logout();
+      props.history.push("/");
+    });
+  };
   return (
     <div className="flexbox-requirement">
       Nav.js
@@ -12,8 +21,11 @@ function Nav() {
       <Link to="/new">
         <section>New Post</section>
       </Link>
+      <Link to="/">
+        <button onClick={() => logout()}>Logout</button>
+      </Link>
     </div>
   );
 }
 
-export default Nav;
+export default connect(null, { logout })(Nav);

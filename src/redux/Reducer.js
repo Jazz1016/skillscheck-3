@@ -11,12 +11,23 @@ export function getUser(data) {
   };
 }
 
+const LOGOUT = "LOGOUT";
+
+export function logout() {
+  return {
+    type: LOGOUT,
+    payload: null
+  };
+}
+
 export default function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_USER:
       console.log(state);
       return { ...state, user: payload };
+    case LOGOUT:
+      return { ...state, user: {} };
     default:
       return state;
   }
