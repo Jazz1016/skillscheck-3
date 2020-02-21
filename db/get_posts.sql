@@ -1,2 +1,2 @@
 SELECT * FROM posts
-WHERE user_id = $1
+WHERE title LIKE $2 AND user_id = $1

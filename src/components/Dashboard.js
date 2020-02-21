@@ -24,8 +24,8 @@ class Dashboard extends React.Component {
     });
   };
 
-  getUserPosts = userid => {
-    axios.get(`/api/posts/${userid}`).then(res => {
+  getUserPosts = (userid, text) => {
+    axios.get(`/api/posts/${userid}?title=${text}`).then(res => {
       this.setState({ posts: res.data });
     });
   };
@@ -37,13 +37,13 @@ class Dashboard extends React.Component {
     this.setState({ search: "" });
   };
   searchPosts = text => {
-    console.log(text);
+    // console.log(text);
     axios.get(`/api/post?title=${text}`).then(res => {
       this.setState({ posts: res.data });
     });
   };
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     // console.log(this.state.posts);
     const postList = this.state.posts.map((post, i) => {
       return (
@@ -68,12 +68,21 @@ class Dashboard extends React.Component {
         />
         <button
           onClick={() => {
+            {
+            }
             this.searchPosts(this.state.search);
           }}
         >
           search
         </button>
-        <input type="checkbox" name="" value="check"></input>
+        <input
+          type="checkbox"
+          value="check"
+          onClick={() => {
+            this.getUserPosts(this.props.state.user.user_id, this.state.search);
+          }}
+        />
+        user posts only
         {postList}
       </div>
     );

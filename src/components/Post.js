@@ -16,7 +16,7 @@ class Post extends React.Component {
   };
 
   getPost = id => {
-    console.log(id);
+    // console.log(id);
     axios
       .get(`/api/post/${id}`)
       .then(res => {
@@ -28,8 +28,8 @@ class Post extends React.Component {
   };
 
   render() {
-    console.log(this.props);
-    console.log(this.state.post);
+    // console.log(this.props);
+    // console.log(this.state.post);
 
     return (
       <div>
